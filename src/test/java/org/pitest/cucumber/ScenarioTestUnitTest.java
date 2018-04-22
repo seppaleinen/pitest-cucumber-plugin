@@ -13,20 +13,19 @@ import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 import org.pitest.testapi.ResultCollector;
 
-import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.*;
 
 @RunWith(MockitoJUnitRunner.class)
 public class ScenarioTestUnitTest {
 
     @Mock
-    CucumberScenario scenario;
+    private CucumberScenario scenario;
 
     @Mock
     private ResultCollector resultCollector;
 
     @Before
-    public void setUp() throws Exception {
+    public void setUp() {
         TagStatement gherkin = mock(TagStatement.class);
         when(scenario.getGherkinModel()).thenReturn(gherkin);
     }

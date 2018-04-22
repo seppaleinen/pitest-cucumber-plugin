@@ -15,7 +15,7 @@ import static java.util.Arrays.asList;
 public class CucumberJUnitCompatibleConfiguration extends JUnitCompatibleConfiguration {
 
     CucumberJUnitCompatibleConfiguration(TestGroupConfig config) {
-        super(config, Collections.<String>emptyList(), Collections.<String>emptyList());
+        super(config, Collections.emptyList(), Collections.emptyList());
     }
 
     @Override
@@ -34,12 +34,12 @@ public class CucumberJUnitCompatibleConfiguration extends JUnitCompatibleConfigu
     }
 
     private boolean isCucumberUsed() {
-        boolean result = false;
         try {
             Class.forName("cucumber.api.junit.Cucumber");
-            result = true;
+            return true;
         } catch (ClassNotFoundException e) {
+            // Do nothing
+            return false;
         }
-        return result;
     }
 }

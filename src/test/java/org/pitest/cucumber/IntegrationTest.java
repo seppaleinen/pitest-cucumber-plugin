@@ -28,12 +28,12 @@ public class IntegrationTest {
     private ResultCollector resultCollector;
 
     @Before
-    public void setUp() throws Exception {
-        DateCalculator.failMode.set(null);
+    public void setUp() {
+        DateCalculator.FAIL_MODE.set(null);
     }
 
     @Test
-    public void should_run_scenarios_successfully() throws Exception {
+    public void should_run_scenarios_successfully() {
         // given
         TestUnit firstTest = getScenarioTestUnit();
 
@@ -47,10 +47,10 @@ public class IntegrationTest {
     }
 
     @Test
-    public void should_detect_scenario_failure() throws Exception {
+    public void should_detect_scenario_failure() {
         // given
         TestUnit firstTest = getScenarioTestUnit();
-        DateCalculator.failMode.set(true);
+        DateCalculator.FAIL_MODE.set(true);
 
         // when
         firstTest.execute(resultCollector);
@@ -62,7 +62,7 @@ public class IntegrationTest {
     }
 
     @Test
-    public void should_detect_skipped_scenario() throws Exception {
+    public void should_detect_skipped_scenario() {
         // given
         CucumberTestUnitFinder finder = new CucumberTestUnitFinder();
         List<TestUnit> testUnits = finder.findTestUnits(HideFromJUnit.Cornichon.class);

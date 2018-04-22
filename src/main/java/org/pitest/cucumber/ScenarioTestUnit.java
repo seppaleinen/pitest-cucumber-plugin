@@ -16,8 +16,6 @@ import org.pitest.testapi.ResultCollector;
 import org.pitest.testapi.TestUnit;
 import org.pitest.util.Log;
 
-import java.lang.reflect.InvocationHandler;
-import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
 import java.util.logging.Logger;
 
@@ -48,11 +46,7 @@ public class ScenarioTestUnit implements TestUnit {
     }
 
     private Formatter nullFormatter() {
-        return (Formatter) Proxy.newProxyInstance(getClass().getClassLoader(), new Class[]{Formatter.class}, new InvocationHandler() {
-            public Object invoke(Object proxy, Method method, Object[] args) {
-                return null;
-            }
-        });
+        return (Formatter) Proxy.newProxyInstance(getClass().getClassLoader(), new Class[]{Formatter.class}, (proxy, method, args) -> null);
     }
 
     public Description getDescription() {

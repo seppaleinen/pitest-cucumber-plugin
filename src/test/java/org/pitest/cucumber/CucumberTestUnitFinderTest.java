@@ -28,7 +28,7 @@ public class CucumberTestUnitFinderTest {
     }
 
     @Test
-    public void should_find_one_test_unit_for_one_feature_available_in_classpath() throws Exception {
+    public void should_find_one_test_unit_for_one_feature_available_in_classpath() {
         // given cucumber features in the classpath
 
         // when
@@ -42,7 +42,7 @@ public class CucumberTestUnitFinderTest {
     }
     
     @Test
-    public void should_find_one_test_unit_for_one_feature_available_in_classpath_using_subclassed_runner() throws Exception {
+    public void should_find_one_test_unit_for_one_feature_available_in_classpath_using_subclassed_runner() {
     	// given cucumber features in the classpath
     	
     	// when
@@ -56,7 +56,7 @@ public class CucumberTestUnitFinderTest {
     }
 
     @Test
-    public void should_find_as_many_test_units_as_features_and_examples_available_in_classpath() throws Exception {
+    public void should_find_as_many_test_units_as_features_and_examples_available_in_classpath() {
         // given cucumber features in the classpath
 
         // when

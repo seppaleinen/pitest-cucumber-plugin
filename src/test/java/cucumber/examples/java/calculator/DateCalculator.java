@@ -7,16 +7,16 @@ import java.util.Date;
  */
 public class DateCalculator {
 
-    public static ThreadLocal<Boolean> failMode = new ThreadLocal<Boolean>();
+    public static final ThreadLocal<Boolean> FAIL_MODE = new ThreadLocal<>();
 
-    private Date now;
+    private final Date now;
 
-    public DateCalculator(Date now) {
+    DateCalculator(Date now) {
         this.now = now;
     }
 
-    public String isDateInThePast(Date date) {
-        if (failMode.get() != null) {
+    String isDateInThePast(Date date) {
+        if (FAIL_MODE.get() != null) {
             return "error";
         }
         return (date.before(now)) ? "yes" : "no";

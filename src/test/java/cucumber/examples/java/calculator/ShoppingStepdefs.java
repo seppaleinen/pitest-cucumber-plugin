@@ -14,25 +14,25 @@ import static org.junit.Assert.assertEquals;
  * This file is copy/pasted from cucumber-jvm java calculator example
  */
 public class ShoppingStepdefs {
-    private RpnCalculator calc = new RpnCalculator();
+    private static final RpnCalculator CALC = new RpnCalculator();
 
     @Given("^the following groceries:$")
     public void the_following_groceries(List<Grocery> groceries) {
         for (Grocery grocery : groceries) {
-            calc.push(grocery.price.value);
-            calc.push("+");
+            CALC.push(grocery.price.value);
+            CALC.push("+");
         }
     }
 
     @When("^I pay (\\d+)$")
     public void i_pay(int amount) {
-        calc.push(amount);
-        calc.push("-");
+        CALC.push(amount);
+        CALC.push("-");
     }
 
     @Then("^my change should be (\\d+)$")
     public void my_change_should_be_(int change) {
-        assertEquals(-calc.value().intValue(), change);
+        assertEquals(-CALC.value().intValue(), change);
     }
 
     public static class Grocery {
@@ -46,9 +46,9 @@ public class ShoppingStepdefs {
     }
 
     public static class Price {
-        public int value;
+        final int value;
 
-        public Price(int value) {
+        Price(int value) {
             this.value = value;
         }
 

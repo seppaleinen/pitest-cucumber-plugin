@@ -23,7 +23,7 @@ import cucumber.runtime.model.CucumberTagStatement;
 public class CucumberTestUnitFinder implements TestUnitFinder {
 
     public List<TestUnit> findTestUnits(Class<?> junitTestClass) {
-        List<TestUnit> result = new ArrayList<TestUnit>();
+        List<TestUnit> result = new ArrayList<>();
         RunWith annotation = junitTestClass.getAnnotation(RunWith.class);
         if (annotation!= null && Cucumber.class.isAssignableFrom(annotation.value())) {
             RuntimeOptionsFactory runtimeOptionsFactory = new RuntimeOptionsFactory(junitTestClass);
