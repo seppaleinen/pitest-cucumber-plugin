@@ -13,9 +13,14 @@ public class CucumberTestFrameworkPlugin implements TestPluginFactory {
         return "Cucumber with JUnit support";
     }
 
+    public String name() {
+        return "Cucumber with JUnit support";
+    }
+
     public Configuration createTestFrameworkConfiguration(TestGroupConfig config,
                                                           ClassByteArraySource source,
-                                                          Collection<String> excludedRunners) {
+                                                          Collection<String> excludedRunners,
+                                                          Collection<String> includedMethods) {
 
         return new CucumberJUnitCompatibleConfiguration(config);
     }

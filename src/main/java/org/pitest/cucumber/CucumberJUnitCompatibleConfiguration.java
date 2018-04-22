@@ -14,8 +14,8 @@ import static java.util.Arrays.asList;
 
 public class CucumberJUnitCompatibleConfiguration extends JUnitCompatibleConfiguration {
 
-    public CucumberJUnitCompatibleConfiguration(TestGroupConfig config) {
-        super(config, Collections.<String>emptyList());
+    CucumberJUnitCompatibleConfiguration(TestGroupConfig config) {
+        super(config, Collections.<String>emptyList(), Collections.<String>emptyList());
     }
 
     @Override

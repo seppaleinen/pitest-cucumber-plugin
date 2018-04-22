@@ -38,14 +38,14 @@ public class CucumberTestUnitFinder implements TestUnitFinder {
                     if (element instanceof CucumberScenario) {
                         CucumberScenario scenario = (CucumberScenario) element;
                         Log.getLogger().fine("Found \"" + scenario.getVisualName() + "\"");
-                        ScenarioTestUnit testUnit = new ScenarioTestUnit(junitTestClass, scenario);
+                        ScenarioTestUnit testUnit = new ScenarioTestUnit(junitTestClass, classLoader, scenario);
                         result.add(testUnit);
                     } else if (element instanceof CucumberScenarioOutline) {
                         CucumberScenarioOutline scenarioOutline = (CucumberScenarioOutline) element;
                         Log.getLogger().fine("Found \"" + scenarioOutline.getVisualName() + "\"");
                         for (CucumberExamples examples : scenarioOutline.getCucumberExamplesList()) {
                             for (CucumberScenario scenario : examples.createExampleScenarios()) {
-                                ScenarioTestUnit testUnit = new ScenarioTestUnit(junitTestClass, scenario);
+                                ScenarioTestUnit testUnit = new ScenarioTestUnit(junitTestClass, classLoader, scenario);
                                 result.add(testUnit);
                             }
                         }

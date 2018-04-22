@@ -24,16 +24,17 @@ import java.util.logging.Logger;
 public class ScenarioTestUnit implements TestUnit {
 
     private static final Logger LOGGER = Log.getLogger();
+    private final Class<?> junitTestClass;
+    private final ClassLoader classLoader;
     private final CucumberScenario scenario;
 
-    private final Class<?> junitTestClass;
-
-    public ScenarioTestUnit(Class<?> junitTestClass, CucumberScenario scenario) {
+    ScenarioTestUnit(Class<?> junitTestClass, ClassLoader classLoader, CucumberScenario scenario) {
         this.junitTestClass = junitTestClass;
+        this.classLoader = classLoader;
         this.scenario = scenario;
     }
 
-    public void execute(ClassLoader classLoader, ResultCollector rc) {
+    public void execute(ResultCollector rc) {
         ResourceLoader resourceLoader = new MultiLoader(classLoader);
 
         // TODO threadlocal runtime cache using junitTestClass as a key
@@ -48,8 +49,7 @@ public class ScenarioTestUnit implements TestUnit {
 
     private Formatter nullFormatter() {
         return (Formatter) Proxy.newProxyInstance(getClass().getClassLoader(), new Class[]{Formatter.class}, new InvocationHandler() {
-            @Override
-            public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
+            public Object invoke(Object proxy, Method method, Object[] args) {
                 return null;
             }
         });
